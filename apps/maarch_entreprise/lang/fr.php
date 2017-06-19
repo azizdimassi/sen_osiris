@@ -758,7 +758,7 @@ if (!defined('_ADV_SEARCH_MLB')) define( '_ADV_SEARCH_MLB', '[courrier] Recherch
 if (!defined('_ADV_SEARCH_INVOICES')) define( '_ADV_SEARCH_INVOICES', '[cold] Rechercher une facture client');
 
 if (!defined('_ADV_SEARCH_TITLE')) define( '_ADV_SEARCH_TITLE', 'Recherche avanc&eacute;e de document');
-if (!defined('_MAIL_OBJECT')) define( '_MAIL_OBJECT', 'Objet du courrier');
+if (!defined('_MAIL_OBJECT')) define( '_MAIL_OBJECT', 'Type de document');
 //if (!defined('_SHIPPER')) define( '_SHIPPER', 'Emetteur');
 //if (!defined('_SENDER')) define( '_SENDER', 'Exp&eacute;diteur');
 //if (!defined('_SOCIETY')) define( '_SOCIETY', 'Soci&eacute;t&eacute;');
@@ -923,7 +923,7 @@ if (!defined('_USER_DATA')) define( '_USER_DATA', 'Fiche utilisateur');
 if (!defined('_SHIPPER_TYPE')) define( '_SHIPPER_TYPE', 'Type de provenance');
 if (!defined('_DEST_TYPE')) define( '_DEST_TYPE', 'Type de destinataire');
 if (!defined('_VALIDATE_MAIL')) define( '_VALIDATE_MAIL', 'Validation courrier');
-if (!defined('_LETTER_INFO')) define( '_LETTER_INFO','Informations sur le courrier');
+if (!defined('_LETTER_INFO')) define( '_LETTER_INFO','Informations sur le document');
 if (!defined('_DATE_START')) define( '_DATE_START','Date d&rsquo;arriv&eacute;e');
 if (!defined('_LIMIT_DATE_PROCESS')) define( '_LIMIT_DATE_PROCESS','Date limite de traitement');
 
@@ -967,6 +967,7 @@ if (!defined('_DONE')) define( '_DONE','Actions effectu&eacute;es');
 if (!defined('_ANSWER_TYPES_DONE')) define( '_ANSWER_TYPES_DONE', 'Type(s) de r&eacute;ponses effectu&eacute;es');
 if (!defined('_CLOSING_DATE')) define( '_CLOSING_DATE', 'Date de cl&ocirc;ture');
 if (!defined('_FULLTEXT')) define( '_FULLTEXT', 'Plein texte');
+if (!defined('_OBJET_SEARCH')) define( '_OBJET_SEARCH', 'Objet');
 if (!defined('_FULLTEXT_HELP')) define( '_FULLTEXT_HELP', 'Recherche plein texte avec le moteur Luc&egrave;ne...');
 if (!defined('_FULLTEXT_ERROR')) define( '_FULLTEXT_ERROR', 'Entr&eacute;es invalides pour la recherche plein texte. Si vous avez mis le signe "*", il doit y avoir au moins 3 caract&egrave;res devant, et pas de signes comme ,\':!+');
 if (!defined('_FILE_NOT_SEND')) define( '_FILE_NOT_SEND', 'Le fichier n&rsquo;a pas &eacute;t&eacute; envoy&eacute;');
