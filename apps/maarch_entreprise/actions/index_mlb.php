@@ -575,35 +575,35 @@ if ($_SESSION['features']['show_types_tree'] == 'true') {
     																								. 'style="display:inline;">*</span>&nbsp;</td>';
     }
     else{
-    	$frmStr .= '<td><label for="contact" class="form_title" >'
-    			. '<span id="exp_contact">' . _SHIPPER . '</span>'
-    					. '<span id="dest_contact">' . _DEST . '</span>';
-    					if ($_SESSION['features']['personal_contact'] != "false" || $_SESSION['features']['create_public_contact'] != "false"
-    							) {
-    								$frmStr .= ' <a href="#" id="create_contact" title="' . _CREATE_CONTACT
-    								. '" onclick="new Effect.toggle(\'create_contact_div\', '
-    										. '\'blind\', {delay:0.2});return false;" '
-    												. 'style="display:inline;" ><img src="'
-    														. $_SESSION['config']['businessappurl'] . 'static.php?filename='
-    																. 'modif_liste.png" alt="' . _CREATE_CONTACT . '"/></a>';
-    							}
-    							$frmStr .= '</label></td>';
-    							$contact_mode = "view";
-    							if($core->test_service('update_contacts','apps', false)) $contact_mode = 'update';
-    							$frmStr .= '<td><a href="#" id="contact_card" title="' . _CONTACT_CARD
-    							. '" onclick="open_contact_card(\''
-    									. $_SESSION ['config']['businessappurl'] . 'index.php?display=true'
-    											. '&page=contact_info\', \'' . $_SESSION ['config']['businessappurl']
-    											. 'index.php?display=true&page=user_info\',\''.$contact_mode.'\');" '
-    													. 'style="visibility:hidden;" ><img src="'
-    															. $_SESSION['config']['businessappurl'] . 'static.php?filename='
-    																	. 'my_contacts_off.gif" alt="' . _CONTACT_CARD . '" /></a>&nbsp;</td>';
-    																	$frmStr .= '<td class="indexing_field"><input type="text" name="contact" '
-    																			. 'id="contact" onblur="clear_error(\'frm_error_' . $actionId . '\');'
-    																					. 'display_contact_card(\'visible\');" /><div id="show_contacts" '
-    																							. 'class="autocomplete autocompleteIndex"></div></td>';
-    																							$frmStr .= '<td><span class="red_asterisk" id="contact_mandatory" '
-    																									. 'style="display:inline;">*</span>&nbsp;</td>';
+        $frmStr .= '<td><label for="contact" class="form_title" >'
+            . '<span id="exp_contact">' . _SHIPPER . '</span>'
+            . '<span id="dest_contact">' . _DEST . '</span>';
+                    /*if ($_SESSION['features']['personal_contact'] != "false" || $_SESSION['features']['create_public_contact'] != "false"
+                            ) {
+                                $frmStr .= ' <a href="#" id="create_contact" title="' . _CREATE_CONTACT
+                                . '" onclick="new Effect.toggle(\'create_contact_div\', '
+                                        . '\'blind\', {delay:0.2});return false;" '
+                                                . 'style="display:inline;" ><img src="'
+                                                        . $_SESSION['config']['businessappurl'] . 'static.php?filename='
+                                                                . 'modif_liste.png" alt="' . _CREATE_CONTACT . '"/></a>';
+                            }*/
+                            $frmStr .= '</label></td>';
+                            $contact_mode = "view";
+                            if($core->test_service('update_contacts','apps', false)) $contact_mode = 'update';
+                            $frmStr .= '<td><a href="#" id="contact_card" title="' . _CONTACT_CARD
+                            . '" onclick="open_contact_card(\''
+                                    . $_SESSION ['config']['businessappurl'] . 'index.php?display=true'
+                                            . '&page=contact_info\', \'' . $_SESSION ['config']['businessappurl']
+                                            . 'index.php?display=true&page=user_info\',\''.$contact_mode.'\');" '
+                                                    . 'style="visibility:hidden;" ><img src="'
+                                                            . $_SESSION['config']['businessappurl'] . 'static.php?filename='
+                                                                    . 'my_contacts_off.gif" alt="' . _CONTACT_CARD . '" /></a>&nbsp;</td>';
+                                                                    $frmStr .= '<td class="indexing_field"><input type="text" name="contact" '
+                                                                            . 'id="contact" onblur="clear_error(\'frm_error_' . $actionId . '\');'
+                                                                                    . 'display_contact_card(\'visible\');" /><div id="show_contacts" '
+                                                                                            . 'class="autocomplete autocompleteIndex"></div></td>';
+                                                                                            $frmStr .= '<td><span class="red_asterisk" id="contact_mandatory" '
+                                                                                                    . 'style="display:inline;">*</span>&nbsp;</td>';
     }
 //     //if ($_SESSION['user']['UserId'] == 'superadmin'
 //     		//) {
