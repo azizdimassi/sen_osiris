@@ -42,6 +42,14 @@ $_SESSION['search']['plain_text'] = "";
 
 $type = new types();
 
+
+if ($_SESSION['features']['show_types_tree'] == 'true') {
+	$doctypes = $type->getArrayStructTypes($collId);
+} else {
+	$doctypes = $type->getArrayTypes($collId);
+}
+
+
 $func = new functions();
 $conn = new dbquery();
 $conn->connect();
@@ -471,63 +479,63 @@ if(isset($_REQUEST['nodetails']))
         </td-->
     </tr>
 </table>
-<table align="center" border="0" width="100%">
+<!-- <table align="center" border="0" width="100%"> -->
 <?php
-            if($core_tools->is_module_loaded("basket") == true) { ?>
-             <tr>
-                <td colspan="2" ><h2><?php echo _SEARCH_SCOPE; ?></h2></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="block">
-                    <table border="0" width="100%">
-                        <tr>
-                            <td width="70%">
-                                <label for="baskets" class="bold" ><?php echo _SPREAD_SEARCH_TO_BASKETS;?>:</label>
-                                <input type="hidden" name="meta[]" value="baskets_clause#baskets_clause#select_simple" />
-                                <select name="baskets_clause" id="baskets_clause">
-                                    <option id="true" value="true"><?php echo _ALL_BASKETS;?></option>
-                                    <option id="false" value="false"><?php echo _NO;?></option>
+            //if($core_tools->is_module_loaded("basket") == true) { ?>
+<!--              <tr> -->
+                <!--<td colspan="2" ><h2><?php //echo _SEARCH_SCOPE; ?></h2></td>-->
+<!--             </tr> -->
+<!--             <tr> -->
+<!--                 <td> -->
+<!--                     <div class="block"> -->
+<!--                     <table border="0" width="100%"> -->
+<!--                         <tr> -->
+<!--                             <td width="70%"> -->
+                                <!--<label for="baskets" class="bold" ><?php //echo _SPREAD_SEARCH_TO_BASKETS;?>:</label>-->
+<!--                                 <input type="hidden" name="meta[]" value="baskets_clause#baskets_clause#select_simple" /> -->
+<!--                                 <select name="baskets_clause" id="baskets_clause"> -->
+                                    <!--<option id="true" value="true"><?php //echo _ALL_BASKETS;?></option>-->
+                                    <!--<option id="false" value="false"><?php //echo _NO;?></option>-->
                                     <?php 
-                                    if($_REQUEST['mode'] != 'popup') {
-                                        for($i=0; $i< count($_SESSION['user']['baskets']);$i++) {
-                                            if (
-                                                $_SESSION['user']['baskets'][$i]['coll_id'] == $coll_id 
-                                                && $_SESSION['user']['baskets'][$i]['is_folder_basket'] == 'N'
-                                                && $_SESSION['user']['baskets'][$i]['id'] <> 'IndexingBasket'
-                                                && $_SESSION['user']['baskets'][$i]['id'] <> 'EmailsToQualify'
-                                                && $_SESSION['user']['baskets'][$i]['id'] <> 'InitBasket'
-                                                && $_SESSION['user']['baskets'][$i]['id'] <> 'RetourCourrier'
-                                                && $_SESSION['user']['baskets'][$i]['id'] <> 'QualificationBasket'
-                                            ) {
+//                                     if($_REQUEST['mode'] != 'popup') {
+//                                         for($i=0; $i< count($_SESSION['user']['baskets']);$i++) {
+//                                             if (
+//                                                 $_SESSION['user']['baskets'][$i]['coll_id'] == $coll_id 
+//                                                 && $_SESSION['user']['baskets'][$i]['is_folder_basket'] == 'N'
+//                                                 && $_SESSION['user']['baskets'][$i]['id'] <> 'IndexingBasket'
+//                                                 && $_SESSION['user']['baskets'][$i]['id'] <> 'EmailsToQualify'
+//                                                 && $_SESSION['user']['baskets'][$i]['id'] <> 'InitBasket'
+//                                                 && $_SESSION['user']['baskets'][$i]['id'] <> 'RetourCourrier'
+//                                                 && $_SESSION['user']['baskets'][$i]['id'] <> 'QualificationBasket'
+//                                             ) {
                                                 ?><option id="<?php 
-                                                    echo $_SESSION['user']['baskets'][$i]['id'];
+//                                                     echo $_SESSION['user']['baskets'][$i]['id'];
                                                     ?>" value="<?php 
-                                                    echo $_SESSION['user']['baskets'][$i]['id'];
+//                                                     echo $_SESSION['user']['baskets'][$i]['id'];
                                                     ?>" ><?php 
-                                                    echo $_SESSION['user']['baskets'][$i]['desc'];
+//                                                     echo $_SESSION['user']['baskets'][$i]['desc'];
                                                 ?></option>
                                                 <?php
-                                            }
-                                        }
-                                    } ?>
-                                </select>
-                            </td>
-                            <td><em><?php echo _SEARCH_SCOPE_HELP; ?></em></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
-                    </div>
-                    <div class ="block_end">&nbsp;</div>
-                </td>
-                <td>
-                    <p align="center">
-                    </p>
-                </td>
-            </tr>
-            <tr><td colspan="2"><hr/></td></tr>
+//                                             }
+//                                         }
+                                    //} ?>
+<!--                                 </select> -->
+<!--                             </td> -->
+                            <!--<td><em><?php //echo _SEARCH_SCOPE_HELP; ?></em></td>-->
+<!--                             <td>&nbsp;</td> -->
+<!--                         </tr> -->
+<!--                     </table> -->
+<!--                     </div> -->
+<!--                     <div class ="block_end">&nbsp;</div> -->
+<!--                 </td> -->
+<!--                 <td> -->
+<!--                     <p align="center"> -->
+<!--                     </p> -->
+<!--                 </td> -->
+<!--             </tr> -->
+<!--             <tr><td colspan="2"><hr/></td></tr> -->
             <?php
-            }
+            //}
             if($core_tools->is_module_loaded("cases") == true)
             { ?>
 <!--              <tr> -->
@@ -586,7 +594,49 @@ if(isset($_REQUEST['nodetails']))
             <table border = "0" width="100%">
                 <tr>
                     <td width="70%"><label for="subject" class="bold" ><?php echo _MAIL_OBJECT;?>:</label>
-                        <input type="text" name="subject" id="subject" <?php echo $size; ?>  />
+                        <select name="type_id" id="type_id">
+                            <option value=""><?php echo _CHOOSE_TYPE;?></option>
+                            <?php 
+                                 if ($_SESSION['features']['show_types_tree'] == 'true') {
+                                 	for ($i = 0; $i < count($doctypes); $i ++) {
+                            ?>
+                            <option value="" class="<?php echo $doctypes[$i]['style'];?>" title="<?php echo $doctypes[$i]['label'];?>" label="<?php echo $doctypes[$i]['label'];?>">
+                                 <?php echo $doctypes[$i]['label'];?>
+                            </option>
+                            <?php 
+                                       for ($j = 0; $j < count($doctypes[$i]['level2']); $j ++) {
+                            ?>
+                            <option value="" class="<?php echo $doctypes[$i]['level2'][$j]['style'];?>" title="<?php echo $doctypes[$i]['level2'][$j]['label'];?>" label="<?php echo $doctypes[$i]['level2'][$j]['label'];?>">
+                                 &nbsp;&nbsp;<?php echo $doctypes[$i]['level2'][$j]['label'];?>
+                            </option>
+                            <?php 
+                                         for ($k = 0; $k < count($doctypes[$i]['level2'][$j]['types']);
+                                         $k ++
+                                         ) {
+                            ?>
+                            <option value="<?php echo $doctypes[$i]['level2'][$j]['types'][$k]['id'];?>"  title="<?php echo $doctypes[$i]['level2'][$j]['types'][$k]['label'];?>" label="<?php echo $doctypes[$i]['level2'][$j]['types'][$k]['label'];?>">
+                                 &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $doctypes[$i]['level2'][$j]['types'][$k]['label'];?>
+                            </option>
+                            <?php 
+                                         }
+                                       }
+                                 	}
+                                 }
+                                 else{
+                                 	for ($i = 0; $i < count($doctypes); $i ++) {
+                                 
+                            ?>
+                            <option value="<?php echo $doctypes[$i]['ID'];?>">
+                                 <?php echo $doctypes[$i]['LABEL'];?>
+                            </option>
+                            <?php
+                            
+                                 	}
+                                 }
+                            ?>
+                            
+                        </select>
+                        <!--<input type="text" name="subject" id="subject" <?php //echo $size; ?>  />-->
                         <input type="hidden" name="meta[]" value="subject#subject#input_text" />
                     </td>
                     <td><em><?php echo _MAIL_OBJECT_HELP; ?></em></td>
