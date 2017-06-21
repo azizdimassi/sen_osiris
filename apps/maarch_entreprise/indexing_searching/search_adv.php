@@ -42,14 +42,6 @@ $_SESSION['search']['plain_text'] = "";
 
 $type = new types();
 
-
-if ($_SESSION['features']['show_types_tree'] == 'true') {
-	$doctypes = $type->getArrayStructTypes($collId);
-} else {
-	$doctypes = $type->getArrayTypes($collId);
-}
-
-
 $func = new functions();
 $conn = new dbquery();
 $conn->connect();
@@ -125,6 +117,13 @@ $where = $sec->get_where_clause_from_coll_id($coll_id);
 if(!empty($where))
 {
     $where = ' where '.$where;
+}
+
+//get doctypes
+if ($_SESSION['features']['show_types_tree'] == 'true') {
+    $doctypes = $type->getArrayStructTypes($coll_id);
+} else {
+    $doctypes = $type->getArrayTypes($coll_id);
 }
 
 //Check if web brower is ie_6 or not
@@ -736,4 +735,3 @@ load_query(valeurs, loaded_query, 'frmsearch2', '<?php echo $browser_ie;?>, <?ph
     }
     echo '</body></html>';
 }
-
